@@ -99,6 +99,7 @@ namespace Ex03.GarageLogic
             foreach (Wheel wheel in i_Wheels)
             {
                 airPressures.Append(wheel.CurrentAirPressure);
+                airPressures.Append(" ");
             }
 
             return airPressures.ToString();
