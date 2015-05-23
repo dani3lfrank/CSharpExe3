@@ -24,13 +24,7 @@ namespace Ex03.GarageLogic
         {
             get { return m_CurrentWeightOfLoad; }
             set { m_CurrentWeightOfLoad = value; }
-        }
-
-        public override int NumberOfWheels
-        {
-            get { return m_NumberOfWheels; }
-            set { m_NumberOfWheels = value; }
-        }
+        }        
 
     }
 }

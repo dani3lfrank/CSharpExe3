@@ -43,8 +43,7 @@ namespace Ex03.GarageLogic
 
         public virtual int NumberOfWheels
         {
-            get { return m_NumberOfWheels; }
-            set { m_NumberOfWheels = value; }
+            get { return m_NumberOfWheels; }            
         }
 
         public List<Wheel> Wheels

@@ -29,7 +29,7 @@ namespace Ex03.GarageManagementSystem.ConsoleUI
 
         public void SetListOfObjects(List<Object> io_Objects)
         {
-            foreach(var obj in io_Objects)
+            foreach (var obj in io_Objects)
             {
                 SetObject(obj);
             }
@@ -41,48 +41,56 @@ namespace Ex03.GarageManagementSystem.ConsoleUI
 
             MethodInfo[] allMethods = typeOfObj.GetMethods();
 
-            foreach(MethodInfo methodInfo in allMethods)
+            foreach (MethodInfo methodInfo in allMethods)
             {
-                if(methodInfo.IsSpecialName && methodInfo.Name.StartsWith("set", StringComparison.Ordinal))
+                if (methodInfo.IsSpecialName && methodInfo.Name.StartsWith("set", StringComparison.Ordinal))
                 {
                     ParameterInfo[] methodParamaters = methodInfo.GetParameters();
 
                     Type methodParameter = methodParamaters[0].ParameterType;
 
-                    if(methodParameter.IsPrimitive == true || methodParameter.IsEnum == true)  
+                    if (methodParameter.IsPrimitive == true || methodParameter.IsEnum == true)
                     {
-                        Console.WriteLine(string.Format("Please Choose {0}",methodInfo.Name.Replace("set_","")));
-                    
-                        if(methodParameter.IsEnum == true)
+                        Console.WriteLine(string.Format("Please Choose {0}", methodInfo.Name.Replace("set_", "")));
+
+                        if (methodParameter.IsEnum == true)
                         {
                             int i = 1;
 
                             foreach (var eNum in Enum.GetValues(methodParameter))
                             {
                                 Console.WriteLine(string.Format("{0}. {1}", i, eNum.ToString()));
-                                i++;   
+                                i++;
                             }
                         }
 
                         string inParameter = Console.ReadLine();
 
-                        if(methodParameter.IsEnum == true)
+                        if (methodParameter.IsEnum == true)
                         {
                             int enumPick = int.Parse(inParameter);
                             enumPick--;
-                            methodInfo.Invoke( io_Obj, new object[] { Enum.Parse(methodParameter, enumPick.ToString()) } );
+                            methodInfo.Invoke(io_Obj, new object[] { Enum.Parse(methodParameter, enumPick.ToString()) });
                         }
-                        else 
+                        else
                         {
                             TypeConverter typeConverter = TypeDescriptor.GetConverter(methodParameter);
                             object propValue = typeConverter.ConvertFromString(inParameter);
                             methodInfo.Invoke(io_Obj, new object[] { propValue });
                         }
                     }
-                    
-                    
+
+
                 }
+
+            }
+
+        }
+
+
+        internal void SetListOfObjects(List<Wheel> wheels)
+        {
+            throw new NotImplementedException();
         }
     }
-
 }

@@ -35,11 +35,6 @@ namespace Ex03.GarageLogic
             get { return m_NumberOfDoors; }
             set { m_NumberOfDoors = value; }
         }
-
-        public override int NumberOfWheels
-        {
-            get { return m_NumberOfWheels; }
-            set { m_NumberOfWheels = value; }
-        }
+         
     }
 }
