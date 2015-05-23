@@ -27,7 +27,7 @@ namespace Ex03.GarageManagementSystem.ConsoleUI
             return --pickedType;
         }
 
-        public void SetListOfObject(List<Object> io_Objects)
+        public void SetListOfObjects(List<Object> io_Objects)
         {
             foreach(var obj in io_Objects)
             {

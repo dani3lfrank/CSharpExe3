@@ -20,7 +20,7 @@ namespace Ex03.GarageManagementSystem.ConsoleUI
             
             ui.SetObject(vehicle);
             ui.SetObject(engine);
-            ui.SetObject(wheels);
+            ui.SetListOfObjects(wheels);
 
         }
            
