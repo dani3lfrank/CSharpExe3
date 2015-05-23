@@ -9,13 +9,11 @@ namespace Ex03.GarageLogic
         private bool v_IsCarryingDangerousMaterials;
         private float m_CurrentWeightOfLoad;
 
-        public Truck(bool i_IsCarryingDangerousMaterials, float i_CurrentWeightOfLoad, string i_ModelName, string i_LicenceNumber, Engine i_Engine, List<Wheel> i_Wheels)
-            : base(i_ModelName, i_LicenceNumber, i_Engine, i_Wheels)
+        public Truck()
         {
-            v_IsCarryingDangerousMaterials = i_IsCarryingDangerousMaterials;
-            m_CurrentWeightOfLoad = i_CurrentWeightOfLoad;
+            m_NumberOfWheels = 8;
         }
-
+        
         public bool IsCarryingDangerousMaterials
         {
             get { return v_IsCarryingDangerousMaterials; }
@@ -26,6 +24,12 @@ namespace Ex03.GarageLogic
         {
             get { return m_CurrentWeightOfLoad; }
             set { m_CurrentWeightOfLoad = value; }
+        }
+
+        public override int NumberOfWheels
+        {
+            get { return m_NumberOfWheels; }
+            set { m_NumberOfWheels = value; }
         }
 
     }

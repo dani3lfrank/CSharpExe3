@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Reflection;
 using System.Text;
 
 namespace Ex03.GarageLogic
@@ -11,19 +12,15 @@ namespace Ex03.GarageLogic
 
     public abstract class Vehicle
     {
-        private string m_ModelName;
-        private string m_LicenceNumber;
-        private Engine m_Engine;
-        List<Wheel> m_Wheels;
+        protected string m_ModelName;
+        protected string m_LicenceNumber;
+        protected Engine m_Engine;
+        protected int m_NumberOfWheels;
+        protected List<Wheel> m_Wheels;
         eStatusInGarage m_StatusInGarage;
-
-        public Vehicle(string i_ModelName, string i_LicenceNumber, Engine i_Engine, List<Wheel> i_Wheels)
+                      
+        public Vehicle()
         {
-            m_ModelName = i_ModelName;
-            m_LicenceNumber = i_LicenceNumber;
-            m_Engine = i_Engine;
-            m_Wheels = i_Wheels;
-            m_StatusInGarage = 0;
         }
 
         public string ModelName
@@ -38,35 +35,28 @@ namespace Ex03.GarageLogic
             set { m_LicenceNumber = value; }
         }
 
-        public List<Wheel> Wheels
-        {
-            get { return m_Wheels; }
-            set { m_Wheels = value; }
-        }
-
         public Engine Engine
         {
             get { return m_Engine; }
             set { m_Engine = value; }
         }
 
+        public virtual int NumberOfWheels
+        {
+            get { return m_NumberOfWheels; }
+            set { m_NumberOfWheels = value; }
+        }
+
+        public List<Wheel> Wheels
+        {
+            get { return m_Wheels; }
+            set { m_Wheels = value; }
+        }
+
         public eStatusInGarage StatusInGarage
         {
             get { return m_StatusInGarage; }
             set { m_StatusInGarage = value; }
-        }
-
-        public override bool Equals(object obj)
-        {
-            bool eqauls = false;
-            Vehicle toCompareTo = obj as Vehicle;
-
-            if (toCompareTo != null)
-            {
-                eqauls = this.LicenceNumber == toCompareTo.LicenceNumber;
-            }
-
-            return eqauls;
         }
     }
 }

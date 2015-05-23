@@ -19,11 +19,9 @@ namespace Ex03.GarageLogic
         private eColor m_Color;
         private eNumberOfDoors m_NumberOfDoors;
 
-        public Car(eColor i_Color, eNumberOfDoors i_NumberOfDoors, string i_ModelName, string i_LicenceNumber, Engine i_Engine, List<Wheel> i_Wheels)
-            : base(i_ModelName, i_LicenceNumber, i_Engine, i_Wheels)
+        public Car()
         {
-            m_Color = i_Color;
-            m_NumberOfDoors = i_NumberOfDoors;
+            m_NumberOfWheels = 4;
         }
 
         public eColor Color
@@ -36,6 +34,12 @@ namespace Ex03.GarageLogic
         {
             get { return m_NumberOfDoors; }
             set { m_NumberOfDoors = value; }
+        }
+
+        public override int NumberOfWheels
+        {
+            get { return m_NumberOfWheels; }
+            set { m_NumberOfWheels = value; }
         }
     }
 }

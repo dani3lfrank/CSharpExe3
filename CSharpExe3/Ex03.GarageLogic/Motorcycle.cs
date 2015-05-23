@@ -13,12 +13,12 @@ namespace Ex03.GarageLogic
     {
         private eLicenceType m_LicenceType;
         private int m_EngineVolume;
-
-        public Motorcycle(eLicenceType i_LicenceType, string i_ModelName, string i_LicenceNumber, Engine i_Engine, List<Wheel> i_Wheels) : base(i_ModelName, i_LicenceNumber, i_Engine, i_Wheels)
+        
+        public Motorcycle()
         {
-            m_LicenceType = i_LicenceType;
+            m_NumberOfWheels = 2;
         }
-
+        
         public eLicenceType LicenceType
         {
             get { return m_LicenceType; }

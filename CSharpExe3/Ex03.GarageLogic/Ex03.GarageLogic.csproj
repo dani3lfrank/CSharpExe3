@@ -36,7 +36,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Car.cs" />
-    <Compile Include="CreateVehicles.cs" />
+    <Compile Include="CreateOwner.cs" />
     <Compile Include="ElectricEngine.cs" />
     <Compile Include="Engine.cs" />
     <Compile Include="FuelEngine.cs" />
@@ -45,6 +45,7 @@
     <Compile Include="Truck.cs" />
     <Compile Include="ValueOutOfRangeException.cs" />
     <Compile Include="Vehicle.cs" />
+    <Compile Include="VehicleManufacturer.cs" />
     <Compile Include="VehicleOwner.cs" />
     <Compile Include="Wheel.cs" />
   </ItemGroup>
