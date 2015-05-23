@@ -27,9 +27,9 @@ namespace Ex03.GarageManagementSystem.ConsoleUI
             return --pickedType;
         }
 
-        public void SetListOfObjects(List<Wheel> io_Objects)
+        public void SetListOfObjects(List<Wheel> io_Wheels)
         {
-            foreach (var obj in io_Objects)
+            foreach (var obj in io_Wheels)
             {
                 SetObject(obj);
             }
@@ -49,7 +49,7 @@ namespace Ex03.GarageManagementSystem.ConsoleUI
 
                     Type methodParameter = methodParamaters[0].ParameterType;
 
-                    if (methodParameter.IsPrimitive == true || methodParameter.IsEnum == true)
+                    if (methodParameter == typeof(int) || methodParameter == typeof(float) || methodParameter == typeof(string) || methodParameter.IsEnum == true)
                     {
                         Console.WriteLine(string.Format("Please Choose {0}", methodInfo.Name.Replace("set_", "")));
 
