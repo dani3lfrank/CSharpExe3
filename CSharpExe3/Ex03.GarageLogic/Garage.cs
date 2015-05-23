@@ -99,7 +99,6 @@ namespace Ex03.GarageLogic
             foreach (Wheel wheel in i_Wheels)
             {
                 airPressures.Append(wheel.CurrentAirPressure);
-                airPressures.Append(" ");
             }
 
             return airPressures.ToString();
@@ -118,8 +117,7 @@ owner: {2}
 status in garage: {3}
 air pressures in wheels: {4}
 energy level in engine: {5}
-type of energy in engine: {6}
-", keyVal.Value.LicenceNumber, keyVal.Value.ModelName, keyVal.Key.Name, keyVal.Value.StatusInGarage, WheelsPressuresToString(keyVal.Value.Wheels), keyVal.Value.Engine.PercentageOfEnergyLeft, keyVal.Value.Engine.EnergyType));
+", keyVal.Value.LicenceNumber, keyVal.Value.ModelName, keyVal.Key.Name, keyVal.Value.StatusInGarage, WheelsPressuresToString(keyVal.Value.Wheels), keyVal.Value.Engine.PercentageOfEnergyLeft));
                     break;
                 }
             }

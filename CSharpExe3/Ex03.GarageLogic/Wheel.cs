@@ -10,13 +10,6 @@ namespace Ex03.GarageLogic
         private string m_CurrentAirPressure;
         private string m_MaxAirPressure;
 
-        public Wheel(string i_ManufacturerName, string i_CurrentAirPressure, string i_MaxAirPressure)
-        {
-            m_ManufacturerName = i_ManufacturerName;
-            m_CurrentAirPressure = i_CurrentAirPressure;
-            m_MaxAirPressure = i_MaxAirPressure;
-        }
-
         public string ManufacturerName
         {
             get { return m_ManufacturerName; }
@@ -41,6 +34,7 @@ namespace Ex03.GarageLogic
 
             if(int.Parse(m_CurrentAirPressure) > int.Parse(m_MaxAirPressure))
             {
+                //throw new ValueOutOfRangeException("exception", 0, int.Parse(m_MaxAirPressure));
             }
 
         }

@@ -4,17 +4,19 @@ using System.Text;
 
 namespace Ex03.GarageLogic
 {
+    public enum eFuelType
+    {
+        Octan95, Octan96, Octan98, Soler
+    }
+
     public class FuelEngine : Engine
     {
-        public FuelEngine(eEnergyType i_FuelType, float i_PercentageOfEnergyLeft, float i_MaxEnergyCapacity) : base(i_PercentageOfEnergyLeft, i_MaxEnergyCapacity)
-        {
-            m_EnergyType = i_FuelType;
-        }
+        private eFuelType m_FuelType;
 
-        public eEnergyType FuelType
+        public eFuelType FuelType
         {
-            get { return m_EnergyType; }
-            set { m_EnergyType = value; }
+            get { return m_FuelType; }
+            set { m_FuelType = value; }
         }
 
         public override void FillEngine(float i_LitersToAdd, eEnergyType i_EnergyType)
