@@ -27,7 +27,7 @@ namespace Ex03.GarageManagementSystem.ConsoleUI
             return --pickedType;
         }
 
-        public void SetListOfObjects(List<Object> io_Objects)
+        public void SetListOfObjects(List<Wheel> io_Objects)
         {
             foreach (var obj in io_Objects)
             {
@@ -79,18 +79,8 @@ namespace Ex03.GarageManagementSystem.ConsoleUI
                             methodInfo.Invoke(io_Obj, new object[] { propValue });
                         }
                     }
-
-
                 }
-
             }
-
-        }
-
-
-        internal void SetListOfObjects(List<Wheel> wheels)
-        {
-            throw new NotImplementedException();
-        }
+        }        
     }
 }
