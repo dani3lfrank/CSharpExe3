@@ -10,21 +10,7 @@ namespace Ex03.GarageManagementSystem.ConsoleUI
         public static void Main()
         {
             UI ui = new UI();
-            VehicleManufacturer factory = new VehicleManufacturer();
-
-            Vehicle vehicle = factory.CreateChassis(ui.PickFromSupportedTypes(factory.ListSupportedTypes(typeof(eSupportedVehicleTypes))));
-
-            Engine engine = factory.CreateEngine(ui.PickFromSupportedTypes(factory.ListSupportedTypes(typeof(eEnergyType))));
-
-            List<Wheel> wheels = factory.CreateWheels(vehicle);
-            
-            ui.SetObject(vehicle);
-            ui.SetObject(engine);
-            ui.SetListOfObjects(wheels);
-            vehicle.Engine = engine;
-            vehicle.Wheels = wheels;
-
+            ui.ManageGarage();
         }
-           
     }
 }

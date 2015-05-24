@@ -9,12 +9,6 @@ namespace Ex03.GarageLogic
         private string m_Name;
         private string m_PhoneNumber;
 
-        public VehicleOwner(string i_Name, string i_PhoneNumber)
-        {
-            m_Name = i_Name;
-            m_PhoneNumber = i_PhoneNumber;
-        }
-
         public string Name
         {
             get { return m_Name; }

@@ -10,7 +10,7 @@ namespace Ex03.GarageLogic
 
         public Garage()
         {
-            m_VehiclesDict = new Dictionary<VehicleOwner,Vehicle>();
+            m_VehiclesDict = new Dictionary<VehicleOwner, Vehicle>();
         }
 
         public Dictionary<VehicleOwner, Vehicle> VehiclesDict
@@ -21,23 +21,23 @@ namespace Ex03.GarageLogic
 
         public void InsertNewVehicleToGarage(VehicleOwner i_VehicleOwner, Vehicle i_Vehicle)
         {
-            if(m_VehiclesDict.ContainsValue(i_Vehicle))
-            {
-                Console.WriteLine(string.Format("{0} already exists in the garage, setting status to fixed", i_Vehicle.LicenceNumber));
-                i_Vehicle.StatusInGarage = eStatusInGarage.Fixed;
-            }
-            else
-            {
-                m_VehiclesDict.Add(i_VehicleOwner, i_Vehicle);
-                Console.WriteLine(string.Format("{0} was added to the garage for owner {1}", i_Vehicle.LicenceNumber, i_VehicleOwner.Name));
-            }
-        }
+            bool v_IsExist = false;
 
-        public void DisplayCarsLicenceNumbersInGarage() 
-        {
             foreach (KeyValuePair<VehicleOwner, Vehicle> keyVal in m_VehiclesDict)
             {
-                Console.WriteLine(string.Format("car owner: {0}, licence number: {1}", keyVal.Key.Name, keyVal.Value.LicenceNumber));
+                if (keyVal.Value.VehicleLicenceNumber == i_Vehicle.VehicleLicenceNumber)
+                {
+                    Console.WriteLine(string.Format("{0} already exists in the garage, setting status to fixed", i_Vehicle.VehicleLicenceNumber));
+                    i_Vehicle.UpdateStatusInGarage(eStatusInGarage.Fixed);
+                    v_IsExist = true;
+                    break;
+                }
+            }
+
+            if(v_IsExist == false) 
+            {
+                m_VehiclesDict.Add(i_VehicleOwner, i_Vehicle);
+                Console.WriteLine(string.Format("{0} was added to the garage for owner {1}", i_Vehicle.VehicleLicenceNumber, i_VehicleOwner.Name));
             }
         }
 
@@ -47,18 +47,18 @@ namespace Ex03.GarageLogic
             {
                 if(keyVal.Value.StatusInGarage == i_StatusInGarage)
                 {
-                    Console.WriteLine(string.Format("car owner: {0}, licence number: {1}", keyVal.Key.Name, keyVal.Value.LicenceNumber));
+                    Console.WriteLine(string.Format("car owner: {0}, licence number: {1}", keyVal.Key.Name, keyVal.Value.VehicleLicenceNumber));
                 }
             }
         }
 
-        public void ChangeStatusOfVehivleInGarage(string i_LicenceNumber, eStatusInGarage i_NewStatus)
+        public void ChangeStatusOfVehicleInGarage(string i_LicenceNumber, eStatusInGarage i_NewStatus)
         {
             foreach (KeyValuePair<VehicleOwner, Vehicle> keyVal in m_VehiclesDict)
             {
-                if(keyVal.Value.LicenceNumber == i_LicenceNumber)
+                if (keyVal.Value.VehicleLicenceNumber == i_LicenceNumber)
                 {
-                    keyVal.Value.StatusInGarage = i_NewStatus;
+                    keyVal.Value.UpdateStatusInGarage(i_NewStatus);
                     break;
                 }
             }
@@ -68,11 +68,11 @@ namespace Ex03.GarageLogic
         {
             foreach (KeyValuePair<VehicleOwner, Vehicle> keyVal in m_VehiclesDict)
             {
-                if(keyVal.Value.LicenceNumber == i_LicenceNumber)
+                if (keyVal.Value.VehicleLicenceNumber == i_LicenceNumber)
                 {
-                    foreach (Wheel wheel in keyVal.Value.Wheels)
+                    foreach (Wheel wheel in keyVal.Value.WheelsOfVehicle)
                     {
-                        wheel.CurrentAirPressure = wheel.MaxAirPressure;
+                        wheel.WheelCurrentAirPressure = wheel.WheelMaxAirPressure;
                     }
 
                     break;
@@ -80,13 +80,13 @@ namespace Ex03.GarageLogic
             }
         }
 
-        public void FillEngine(string i_LicenceNumber, float i_EnergyToAdd, eEnergyType i_FuelType)
+        public void FillEngine(string i_LicenceNumber, float i_EnergyToAdd, eEnergyType i_EnergyType)
         {
             foreach (KeyValuePair<VehicleOwner, Vehicle> keyVal in m_VehiclesDict)
             {
-                if(keyVal.Value.LicenceNumber == i_LicenceNumber)
+                if(keyVal.Value.VehicleLicenceNumber == i_LicenceNumber)
                 {
-                    keyVal.Value.Engine.FillEngine(i_EnergyToAdd, i_FuelType);
+                    keyVal.Value.EngineOfVehicle.FillEngine(i_EnergyToAdd, i_EnergyType);
                     break;
                 }
             }
@@ -98,7 +98,7 @@ namespace Ex03.GarageLogic
 
             foreach (Wheel wheel in i_Wheels)
             {
-                airPressures.Append(wheel.CurrentAirPressure);
+                airPressures.Append(wheel.WheelCurrentAirPressure);
             }
 
             return airPressures.ToString();
@@ -108,7 +108,7 @@ namespace Ex03.GarageLogic
         {
             foreach (KeyValuePair<VehicleOwner, Vehicle> keyVal in m_VehiclesDict)
             {
-                if (keyVal.Value.LicenceNumber == i_LicenceNumber)
+                if (keyVal.Value.VehicleLicenceNumber == i_LicenceNumber)
                 {
                     Console.WriteLine(string.Format(
 @"licence number: {0}
@@ -117,7 +117,15 @@ owner: {2}
 status in garage: {3}
 air pressures in wheels: {4}
 energy level in engine: {5}
-", keyVal.Value.LicenceNumber, keyVal.Value.ModelName, keyVal.Key.Name, keyVal.Value.StatusInGarage, WheelsPressuresToString(keyVal.Value.Wheels), keyVal.Value.Engine.PercentageOfEnergyLeft));
+energy type: {6}
+", 
+ keyVal.Value.VehicleLicenceNumber, 
+ keyVal.Value.VehicleModelName, 
+ keyVal.Key.Name, 
+ keyVal.Value.StatusInGarage, 
+ WheelsPressuresToString(keyVal.Value.WheelsOfVehicle), 
+ keyVal.Value.EngineOfVehicle.PercentageOfEnergyLeftInEngine, 
+ keyVal.Value.EngineOfVehicle.EnergyType));
                     break;
                 }
             }

@@ -4,11 +4,6 @@ using System.Text;
 
 namespace Ex03.GarageLogic
 {
-    public enum eLicenceType
-    {
-        A, A2, AB, B1
-    }
-
     public class Motorcycle : Vehicle
     {
         private eLicenceType m_LicenceType;
@@ -22,13 +17,38 @@ namespace Ex03.GarageLogic
         public eLicenceType LicenceType
         {
             get { return m_LicenceType; }
-            set { m_LicenceType = value; }
+            set 
+            {
+                try
+                {
+                    m_LicenceType = value;
+
+                    if (Enum.IsDefined(typeof(eLicenceType), value) == false)
+                    {
+                        throw new ValueOutOfRangeException((int)eLicenceType.A, (int)eLicenceType.B1);
+                    }
+                }
+                catch (ArgumentException ex)
+                {
+                    throw ex;
+                }
+            }
         }
 
         public int EngineVolume
         {
             get { return m_EngineVolume; }
-            set { m_EngineVolume = value; }
+            set 
+            {
+                try
+                {
+                    m_EngineVolume = value;
+                }
+                catch (FormatException ex)
+                {
+                    throw ex;
+                }
+            }
         }
     }
 }

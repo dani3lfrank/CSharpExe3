@@ -4,24 +4,32 @@ using System.Text;
 
 namespace Ex03.GarageLogic
 {
-    public enum eFuelType
-    {
-        Octan95, Octan96, Octan98, Soler
-    }
-
     public class FuelEngine : Engine
     {
-        private eFuelType m_FuelType;
-
-        public eFuelType FuelType
+        public FuelEngine(eEnergyType i_EnergyType) : base(i_EnergyType)
         {
-            get { return m_FuelType; }
-            set { m_FuelType = value; }
         }
 
-        public override void FillEngine(float i_LitersToAdd, eEnergyType i_EnergyType)
+        public override void FillEngine(float i_AmountOfEnergyToAdd, eEnergyType i_EnergyType)
         {
-            
+            try
+            {
+                m_PercentageOfEnergyLeft += i_AmountOfEnergyToAdd;
+
+                if (m_PercentageOfEnergyLeft >= m_PercentageOfEnergyLeft)
+                {
+                    throw new ValueOutOfRangeException(1, (int)m_MaxEnergyCapacity + 1);
+                }
+
+                if (Enum.IsDefined(typeof(eEnergyType), i_EnergyType) == false)
+                {
+                    throw new ValueOutOfRangeException((int)eEnergyType.Octan95 + 1, (int)eEnergyType.Electric + 1);
+                }
+            }
+            catch (FormatException ex)
+            {
+                throw ex;
+            }
         }
     }
 }

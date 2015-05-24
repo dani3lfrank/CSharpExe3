@@ -6,9 +6,30 @@ namespace Ex03.GarageLogic
 {
     public class ElectricEngine : Engine
     {
-        public override void FillEngine(float i_BatteryHoursToAdd, eEnergyType i_EnergyType)
+        public ElectricEngine(eEnergyType i_EnergyType) : base(i_EnergyType)
         {
-            m_MaxEnergyCapacity += (i_BatteryHoursToAdd / 60f);
+        }
+
+        public override void FillEngine(float i_AmountOfEnergyToAdd, eEnergyType i_EnergyType)
+        {
+            try
+            {
+                m_PercentageOfEnergyLeft += i_AmountOfEnergyToAdd / 60f;
+
+                if(m_PercentageOfEnergyLeft >= m_PercentageOfEnergyLeft)
+                {
+                    throw new ValueOutOfRangeException(1, (int)m_MaxEnergyCapacity + 1);
+                }
+
+                if (Enum.IsDefined(typeof(eEnergyType), i_EnergyType) == false)
+                {
+                    throw new ValueOutOfRangeException(1, (int)m_MaxEnergyCapacity + 1);
+                }
+            }
+            catch (FormatException ex)
+            {
+                throw ex;
+            }
         }
     }
 }

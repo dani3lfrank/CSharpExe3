@@ -11,20 +11,39 @@ namespace Ex03.GarageLogic
 
         public Truck()
         {
-            m_NumberOfWheels = 8;
+            m_NumberOfWheels = 6;
         }
         
         public bool IsCarryingDangerousMaterials
         {
             get { return v_IsCarryingDangerousMaterials; }
-            set { v_IsCarryingDangerousMaterials = value; }
+            set 
+            {
+                try
+                {
+                    v_IsCarryingDangerousMaterials = value;
+                }
+                catch (FormatException ex)
+                {
+                    throw ex;
+                }
+            }
         }
 
         public float CurrentWeightOfLoad
         {
             get { return m_CurrentWeightOfLoad; }
-            set { m_CurrentWeightOfLoad = value; }
+            set
+            {
+                try
+                {
+                    m_CurrentWeightOfLoad = value;
+                }
+                catch (FormatException ex)
+                {
+                    throw ex;
+                }
+            }
         }        
-
     }
 }

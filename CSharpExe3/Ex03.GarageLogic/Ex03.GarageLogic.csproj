@@ -36,9 +36,14 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Car.cs" />
-    <Compile Include="CreateOwner.cs" />
+    <Compile Include="eColor.cs" />
+    <Compile Include="eEnergyType.cs" />
     <Compile Include="ElectricEngine.cs" />
+    <Compile Include="eLicenceType.cs" />
     <Compile Include="Engine.cs" />
+    <Compile Include="eNumberOfDoors.cs" />
+    <Compile Include="eStatusInGarage.cs" />
+    <Compile Include="eSupportedVehicleTypes.cs" />
     <Compile Include="FuelEngine.cs" />
     <Compile Include="Garage.cs" />
     <Compile Include="Motorcycle.cs" />

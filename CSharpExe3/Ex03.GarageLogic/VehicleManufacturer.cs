@@ -4,11 +4,6 @@ using System.Text;
 
 namespace Ex03.GarageLogic
 {
-    public enum eSupportedVehicleTypes
-    {
-        Motorcycle, Car, Truck
-    }
-
     public class VehicleManufacturer
     {
         public List<string> ListSupportedTypes(Type typeOfObj)
@@ -39,6 +34,10 @@ namespace Ex03.GarageLogic
             {
                 vehicle = new Truck();
             }
+            else
+            {
+                throw new ValueOutOfRangeException((int)eSupportedVehicleTypes.Motorcycle + 1, (int)eSupportedVehicleTypes.Truck + 1);
+            }
 
             return vehicle;
         }
@@ -47,13 +46,13 @@ namespace Ex03.GarageLogic
         {
             List<Wheel> wheels = new List<Wheel>();
 
-            for (int i = 0; i < i_Vehicle.NumberOfWheels; i++)
+            for (int i = 0; i < i_Vehicle.NumberOfWheelsInVehicle; i++)
             {
                 Wheel wheel = new Wheel();
                 wheels.Add(wheel);
             }
-
-                return wheels;
+            
+            return wheels;
         }
 
         public Engine CreateEngine(int i_EnginePicked)
@@ -62,11 +61,15 @@ namespace Ex03.GarageLogic
 
             if (i_EnginePicked == (int)eEnergyType.Electric)
             {
-                engine = new ElectricEngine();
+                engine = new ElectricEngine((eEnergyType)i_EnginePicked);
+            }
+            else if (i_EnginePicked >= (int)eEnergyType.Octan95 && i_EnginePicked <= (int)eEnergyType.Soler)
+            {
+                engine = new FuelEngine((eEnergyType)i_EnginePicked);
             }
             else
             {
-                engine = new FuelEngine();
+                throw new ValueOutOfRangeException((int)eEnergyType.Octan95 + 1, (int)eEnergyType.Electric + 1);
             }
 
             return engine;
